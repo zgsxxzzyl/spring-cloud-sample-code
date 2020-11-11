@@ -1,4 +1,6 @@
 server:
+  servlet:
+    context-path: /client
   port: 8808
 
 spring:
@@ -7,8 +9,12 @@ spring:
 
 eureka:
   client:
-    serviceUrl:
-      defaultZone: http://localhost:8080/eureka/
-#  instance:
-#    preferIpAddress: true
-#    instance-id: ${spring.cloud.client.ipAddress}:${server.port}
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+
+logging:
+  level:
+    org.springframework.cloud.gateway: info

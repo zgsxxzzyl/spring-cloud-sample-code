@@ -7,27 +7,31 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>spring-cloud-sampe</name>
     <description>Demo project for Spring Boot</description>
-
+    <properties>
+        <jdk.version>1.8</jdk.version>
+        <spring-cloud.version>Greenwich.SR6</spring-cloud.version>
+        <spring-boot.version>2.1.10.RELEASE</spring-boot.version>
+    </properties>
     <developers>
         <developer>
-            <id>zgsxxzzyl</id>
-            <name>YiLong Zhang</name>
-            <email>zgsxxzzyl@gmail.com</email>
+            <email>zgsxxzzyl@hotmail.com</email>
         </developer>
     </developers>
 
     <modules>
+        <module>springcloud-bus-kafka</module>
+        <module>springcloud-bus-rabbitmq</module>
+        <module>springcloud-config-client</module>
+        <!--        <module>springcloud-config-profile</module>-->
         <module>springcloud-config-server</module>
         <module>springcloud-eureka-client</module>
         <module>springcloud-eureka-server</module>
-        <!--<module>springcloud-feign</module>-->
+        <module>springcloud-feign</module>
+        <module>springcloud-gateway</module>
         <module>springcloud-hystrix</module>
         <module>springcloud-ribbon</module>
         <module>springcloud-zuul</module>
     </modules>
-    <properties>
-        <jdk.version>1.8</jdk.version>
-    </properties>
     <build>
         <plugins>
             <plugin>

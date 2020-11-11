@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: service-client
+          uri: http://192.168.96.142:8808/
+          #          lb://service-client
+          predicates:
+            - Path=/client/**
+  main:
+    banner-mode: 'off'
+server:
+  port: 8888
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+
+logging:
+  level:
+    org.springframework.cloud.gateway: debug

@@ -1,4 +1,4 @@
-# SpringCloud（Finchley版本）
+# SpringCloud（Greenwich版本）
 
 ## 服务的注册与发现（Eureka）
 * ### [spring-cloud-starter-netflix-eureka-server](https://github.com/HumanNature/spring-boot-sample-code/tree/master/springcloud-eureka-server)
