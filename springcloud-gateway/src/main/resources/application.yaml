@@ -8,8 +8,8 @@ spring:
           enabled: true
       routes:
         - id: service-client
-          uri: http://192.168.96.142:8808/
-          #          lb://service-client
+          uri: lb://service-client
+          #http://localhost:8808/
           predicates:
             - Path=/client/**
   main:
