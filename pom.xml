@@ -17,7 +17,6 @@
             <email>zgsxxzzyl@hotmail.com</email>
         </developer>
     </developers>
-
     <modules>
         <module>springcloud-bus-kafka</module>
         <module>springcloud-bus-rabbitmq</module>
@@ -45,5 +44,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>

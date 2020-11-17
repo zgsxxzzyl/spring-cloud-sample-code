@@ -20,5 +20,4 @@ public class HelloService {
         return restTemplate.getForObject("http://SERVICE-CLIENT/user/{1}", String.class, arg);
     }
 
-
 }

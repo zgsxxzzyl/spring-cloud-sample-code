@@ -10,10 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/user")
 public class UserController {
 
-
     @Value("${server.port}")
     private String port;
-
 
     /**
      * 根据ID查询用户信息
