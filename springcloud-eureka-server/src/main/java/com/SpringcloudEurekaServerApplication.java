@@ -9,10 +9,10 @@ import org.springframework.context.ApplicationContextAware;
 
 @EnableEurekaServer
 @SpringBootApplication
-public class SpringbootEurekaServerApplication implements ApplicationContextAware {
+public class SpringcloudEurekaServerApplication implements ApplicationContextAware {
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringbootEurekaServerApplication.class, args);
+        SpringApplication.run(SpringcloudEurekaServerApplication.class, args);
     }
 
     @Override

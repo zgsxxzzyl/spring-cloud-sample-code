@@ -7,10 +7,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
-public class SpringbootEurekaRibbonApplication {
+public class SpringcloudEurekaRibbonApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringbootEurekaRibbonApplication.class, args);
+        SpringApplication.run(SpringcloudEurekaRibbonApplication.class, args);
     }
 
     @Bean
