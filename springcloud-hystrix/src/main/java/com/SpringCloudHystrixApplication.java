@@ -13,10 +13,10 @@ import org.springframework.web.client.RestTemplate;
 @EnableHystrix
 @EnableEurekaClient
 @EnableDiscoveryClient
-public class SpringcloudHystrixApplication {
+public class SpringCloudHystrixApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringcloudHystrixApplication.class, args);
+        SpringApplication.run(SpringCloudHystrixApplication.class, args);
     }
 
     @Bean

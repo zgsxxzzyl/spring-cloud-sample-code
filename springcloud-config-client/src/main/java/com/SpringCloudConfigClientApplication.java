@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
 @RestController
-public class SpringcloudConfigClientApplication {
+public class SpringCloudConfigClientApplication {
 
     @Value("${foo}")
     String foo;
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringcloudConfigClientApplication.class, args);
+        SpringApplication.run(SpringCloudConfigClientApplication.class, args);
     }
 
     @RequestMapping("/hi")

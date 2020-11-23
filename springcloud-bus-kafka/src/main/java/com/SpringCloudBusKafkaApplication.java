@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringcloudBusRabbitmqApplication {
+public class SpringCloudBusKafkaApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringcloudBusRabbitmqApplication.class, args);
+        SpringApplication.run(SpringCloudBusKafkaApplication.class, args);
     }
 
 }
