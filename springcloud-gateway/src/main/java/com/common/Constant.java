@@ -22,13 +22,13 @@ public class Constant {
     public static final String[] skipAuth_Urls = {"hessian"};
 
     //不需要拦截的资源
-    public static final String[] skipAuth_resources = {"css","js","images"};
+    public static final String[] skipAuth_resources = {"css", "js", "images"};
 
     //跳过登录相关请求
-    public static final String[] skip_login_correlation = {"signon","login","validate"};
+    public static final String[] skip_login_correlation = {"signon", "login", "validate"};
 
     //那些请求可以跳过设置cookie最后访问时间
-    public static final String[] skip_refresh_lastviewtime = {"signout","css","js","images","hessian"};
+    public static final String[] skip_refresh_lastviewtime = {"signout", "css", "js", "images", "hessian"};
 
     //sofa回调网关的授权码地址
     public static final String principal = "principal";
@@ -37,5 +37,4 @@ public class Constant {
     public static final String logout = "signout";
 
     public static final String applicationFilter_error = "地址错误,无法匹配请求中的[应用名]信息,注意:[应用名]必须大写";
-
 }

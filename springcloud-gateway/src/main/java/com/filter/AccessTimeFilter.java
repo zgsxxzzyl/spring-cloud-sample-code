@@ -35,16 +35,17 @@ public class AccessTimeFilter implements GlobalFilter, Ordered {
         //获取当前url
         String url = request.getURI().getPath();
         //跳过不需要刷新最后访问时间的请求
-        for(String skip_url : Constant.skip_refresh_lastviewtime) if(url.contains(skip_url)) return chain.filter(exchange);
+        for (String skip_url : Constant.skip_refresh_lastviewtime)
+            if (url.contains(skip_url)) return chain.filter(exchange);
         MultiValueMap<String, HttpCookie> cookies = request.getCookies();
-        if(cookies.containsKey(Constant.lastviewtime)){
-            if(StringUtils.isNotBlank(cookies.getFirst(Constant.lastviewtime).getValue())) {
+        if (cookies.containsKey(Constant.lastviewtime)) {
+            if (StringUtils.isNotBlank(cookies.getFirst(Constant.lastviewtime).getValue())) {
                 logger.debug("更新cookie最后访问时间");
                 //更新cookie的最后访问时间信息。
                 response.addCookie(ResponseCookie.from(Constant.lastviewtime, Base64.getEncoder().encodeToString(String.valueOf(new Date().getTime()).getBytes()))
-                                                 .domain(ProxyAddrUtil.getProxyServerAddr(request))
-                                                 .path("/")
-                                                 .build());
+                        .domain(ProxyAddrUtil.getProxyServerAddr(request))
+                        .path("/")
+                        .build());
             }
         }
         return chain.filter(exchange);

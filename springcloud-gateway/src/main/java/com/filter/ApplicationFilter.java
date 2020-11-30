@@ -42,8 +42,8 @@ public class ApplicationFilter implements GlobalFilter, Ordered {
         return chain.filter(exchange);
     }
 
-    private void settingPlatformContextPath(){
-        if(CollectionUtils.isEmpty(list)){
+    private void settingPlatformContextPath() {
+        if (CollectionUtils.isEmpty(list)) {
             // TODO  2020-08-21 获取路由列表
             List<RouteDefinition> routes = gatewayProperties.getRoutes();
             // TODO  2020-08-21 设置_platform_contextpath
@@ -52,12 +52,12 @@ public class ApplicationFilter implements GlobalFilter, Ordered {
         }
     }
 
-    private String getApplicationContextPath(String applicationName){
+    private String getApplicationContextPath(String applicationName) {
         List<ServiceInstance> instances = discoveryClient.getInstances(applicationName);
-        if(CollectionUtils.isEmpty(instances)) return "";
+        if (CollectionUtils.isEmpty(instances)) return "";
         //获取应用元数据
         Map<String, String> metadata = instances.get(0).getMetadata();
-        if(CollectionUtils.isEmpty(metadata)) return "";
+        if (CollectionUtils.isEmpty(metadata)) return "";
         String contextPath = metadata.get("context-path");
         return StringUtils.isEmpty(contextPath) ? "" : contextPath;
     }
@@ -66,5 +66,4 @@ public class ApplicationFilter implements GlobalFilter, Ordered {
     public int getOrder() {
         return -1;
     }
-
 }

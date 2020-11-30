@@ -17,7 +17,6 @@ import reactor.core.publisher.Mono;
 
 /**
  * LogoutFilter
- *
  */
 @Component
 public class LogoutFilter implements GlobalFilter, Ordered {
@@ -29,7 +28,7 @@ public class LogoutFilter implements GlobalFilter, Ordered {
         ServerHttpRequest request = exchange.getRequest();
         ServerHttpResponse response = exchange.getResponse();
         //拦截注销请求
-        if(request.getURI().getPath().contains(Constant.logout)){
+        if (request.getURI().getPath().contains(Constant.logout)) {
             logger.info("由用户从门户页面发起注销...");
             //清空cookie中的Authorization信息。
             response.addCookie(ResponseCookie.from(HttpHeaders.AUTHORIZATION, "").domain(ProxyAddrUtil.getProxyServerAddr(request)).path("/").build());

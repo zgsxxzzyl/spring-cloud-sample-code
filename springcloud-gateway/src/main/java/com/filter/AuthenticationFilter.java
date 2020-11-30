@@ -39,34 +39,30 @@ public class AuthenticationFilter implements GlobalFilter, Ordered {
         ServerHttpResponse response = exchange.getResponse();
         //获取当前url
         String url = request.getURI().getPath();
-
         //放行不需要验证的资源-->静态资源js、css、images
-        for(String skip_url : Constant.skipAuth_resources) {
-            if(url.contains("jsp")) break; //jsp资源需要认证
-            if(url.contains(skip_url)) return chain.filter(exchange);
+        for (String skip_url : Constant.skipAuth_resources) {
+            if (url.contains("jsp")) break; //jsp资源需要认证
+            if (url.contains(skip_url)) return chain.filter(exchange);
         }
-
         //放行登录相关请求
-        for(String skip_url : Constant.skip_login_correlation){
-            if(url.contains(skip_url)) return chain.filter(exchange);
+        for (String skip_url : Constant.skip_login_correlation) {
+            if (url.contains(skip_url)) return chain.filter(exchange);
         }
-
         //放行不需要认证的请求--->满足sofa后期特殊需求
-        for(String skip_url : Constant.skipAuth_Urls){
-            if(url.contains(skip_url)){
+        for (String skip_url : Constant.skipAuth_Urls) {
+            if (url.contains(skip_url)) {
                 return chain.filter(exchange);
             }
         }
-
         String token = null;
         //获取token
         MultiValueMap<String, HttpCookie> cookies = request.getCookies();//sofa平台登录时已将jwt放入了cookie中。
-        if(cookies.containsKey(HttpHeaders.AUTHORIZATION))
+        if (cookies.containsKey(HttpHeaders.AUTHORIZATION))
             token = cookies.getFirst(HttpHeaders.AUTHORIZATION).getValue();
-        if(StringUtils.isBlank(token)){
+        if (StringUtils.isBlank(token)) {
             //没有token,重定向(redirect)到登录地址--->这里的重定向的地址其实是没有变的，因为还是通过注册中心获取服务的方式调用
             logger.info("从cookie中未获取到token,将跳转到登录地址...");
-        }else{
+        } else {
             //有token
             try {
                 JwtUtil.parseJWT(token);
@@ -76,23 +72,23 @@ public class AuthenticationFilter implements GlobalFilter, Ordered {
                 ServerHttpRequest change_request = request.mutate().header(HttpHeaders.AUTHORIZATION, token).build();
                 ServerWebExchange change_exchange = exchange.mutate().request(change_request).build();
                 return chain.filter(change_exchange);//直接放行
-            }catch(ExpiredJwtException e){
+            } catch (ExpiredJwtException e) {
                 logger.info("token过期，检测最后访问时间...");
-                if(checkAccessTime(request.getCookies())){//未过期
+                if (checkAccessTime(request.getCookies())) {//未过期
                     logger.info("token过期，cookie最后访问时间未过期，将刷新token...");
                     String new_token = JwtUtil.createJWT((String) e.getClaims().get("userId"));
                     //刷新cookie中的token
                     response.addCookie(ResponseCookie.from(HttpHeaders.AUTHORIZATION, new_token).domain(ProxyAddrUtil.getProxyServerAddr(request)).path("/").build());
                     //向下游服务传递已过期的token、新创建的token
                     ServerHttpRequest change_request = request.mutate().header(Constant.EXPIRE_AUTHORIZATION, token)//已过期token
-                                                                       .header(HttpHeaders.AUTHORIZATION, new_token)//新token
-                                                                       .build();
+                            .header(HttpHeaders.AUTHORIZATION, new_token)//新token
+                            .build();
                     ServerWebExchange change_exchange = exchange.mutate().request(change_request).build();
                     return chain.filter(change_exchange);//放行
-                }else//过期
+                } else//过期
                     logger.info("token过期，cookie最后访问时间过期,将跳转到登录地址...");
-            }catch (Exception e){
-                logger.error("token认证失败{},将跳转到登录地址...",e.getMessage());
+            } catch (Exception e) {
+                logger.error("token认证失败{},将跳转到登录地址...", e.getMessage());
             }
         }
         //重定向登录
@@ -103,18 +99,17 @@ public class AuthenticationFilter implements GlobalFilter, Ordered {
     }
 
     //当前时间是否在（cookie最后访问时间+token有效时间）之前
-    private boolean checkAccessTime(MultiValueMap<String, HttpCookie> cookies){
-
-        if(cookies.containsKey(Constant.lastviewtime)){
+    private boolean checkAccessTime(MultiValueMap<String, HttpCookie> cookies) {
+        if (cookies.containsKey(Constant.lastviewtime)) {
             String lastviewtime = cookies.get(Constant.lastviewtime).get(0).getValue();
-            if(StringUtils.isNotBlank(lastviewtime)){
+            if (StringUtils.isNotBlank(lastviewtime)) {
                 Date current_date = new Date();//当前时间
                 Date cookie_lastviewtime = new Date(Long.parseLong(new String(Base64.getDecoder().decode(lastviewtime))));//cookie最后访问时间
                 Date lastviewtime_expr = new Date(cookie_lastviewtime.getTime() + Constant.TokenValidTime);//cookie的最后访问时间+token有效时间
                 SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
-                logger.info("当前时间:[{}],cookie最后访问时间[{}],lastviewtime过期时间[{}]",df.format(current_date), df.format(cookie_lastviewtime), df.format(lastviewtime_expr));
+                logger.info("当前时间:[{}],cookie最后访问时间[{}],lastviewtime过期时间[{}]", df.format(current_date), df.format(cookie_lastviewtime), df.format(lastviewtime_expr));
                 //当前时间是否在（cookie最后访问时间+token有效时间）之前
-                if(current_date.before(lastviewtime_expr)) return true;//没过期
+                if (current_date.before(lastviewtime_expr)) return true;//没过期
                 else return false;//过期
             }
         }
@@ -126,5 +121,4 @@ public class AuthenticationFilter implements GlobalFilter, Ordered {
     public int getOrder() {
         return 1;
     }
-
 }

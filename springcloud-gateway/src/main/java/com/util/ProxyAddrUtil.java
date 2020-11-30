@@ -14,13 +14,12 @@ public class ProxyAddrUtil {
     public static String getProxyServerAddr(ServerHttpRequest request) {
         //此方式获取的地址可以是ip也可以是域名
         String hosts = request.getHeaders().getFirst("x-forwarded-host");
-        if(StringUtils.isNotBlank(hosts)) {
+        if (StringUtils.isNotBlank(hosts)) {
             //返回第一个代理服务器地址
             return hosts.split(",")[0];
-        } else{
+        } else {
             //x-forwarded-host为空证明网关就是第一级代理服务器
             return request.getURI().getHost();
         }
     }
-
 }

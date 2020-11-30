@@ -11,5 +11,4 @@ public class SpringCloudGatewayApplication {
     public static void main(String[] args) {
         SpringApplication.run(SpringCloudGatewayApplication.class, args);
     }
-
 }
