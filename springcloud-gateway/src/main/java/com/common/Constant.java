@@ -14,8 +14,8 @@ public class Constant {
     //登录地址
     public static final String login_url = "/signon";
 
-    //sofaboot-平台contextpath
-    public static String sofaboot_platform_contextpath = "";
+    //-平台contextpath
+    public static String _platform_contextpath = "";
 
     //不需要拦截的请求 -- 以后可扩展--->用来实现sofa全局配置文件中filter.exclude.url_pattern=*/xxx/*|*/xxx/* 的功能
     //不拦截hessian服务调用的请求

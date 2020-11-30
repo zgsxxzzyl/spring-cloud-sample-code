@@ -36,7 +36,7 @@ public class ApplicationFilter implements GlobalFilter, Ordered {
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
-        //TODO sofaboot平台应用上下文的预加载
+        //TODO 平台应用上下文的预加载
         settingPlatformContextPath();
         //TODO 其他应用上下或数据的预加载，后续可以扩展...
         return chain.filter(exchange);
@@ -44,11 +44,11 @@ public class ApplicationFilter implements GlobalFilter, Ordered {
 
     private void settingPlatformContextPath(){
         if(CollectionUtils.isEmpty(list)){
-            // TODO by ksw 2020-08-21 获取路由列表
+            // TODO  2020-08-21 获取路由列表
             List<RouteDefinition> routes = gatewayProperties.getRoutes();
-            // TODO by ksw 2020-08-21 设置sofaboot_platform_contextpath
+            // TODO  2020-08-21 设置_platform_contextpath
             String applicationName = routes.get(0).getUri().getAuthority().toUpperCase();
-            Constant.sofaboot_platform_contextpath = getApplicationContextPath(applicationName);
+            Constant._platform_contextpath = getApplicationContextPath(applicationName);
         }
     }
 

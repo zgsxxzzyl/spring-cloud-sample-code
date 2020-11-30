@@ -98,7 +98,7 @@ public class AuthenticationFilter implements GlobalFilter, Ordered {
         //重定向登录
         ////303状态码表示由于请求对应的资源存在着另一个URI，应使用GET方法定向获取请求的资源
         response.setStatusCode(HttpStatus.SEE_OTHER);
-        response.getHeaders().set(HttpHeaders.LOCATION, Constant.sofaboot_platform_contextpath + Constant.login_url);
+        response.getHeaders().set(HttpHeaders.LOCATION, Constant._platform_contextpath + Constant.login_url);
         return response.setComplete();//此方式不会执行后续的filter链
     }
 
