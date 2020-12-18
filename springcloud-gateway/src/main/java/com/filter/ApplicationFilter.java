@@ -47,7 +47,7 @@ public class ApplicationFilter implements GlobalFilter, Ordered {
             // TODO  2020-08-21 获取路由列表
             List<RouteDefinition> routes = gatewayProperties.getRoutes();
             // TODO  2020-08-21 设置_platform_contextpath
-            String applicationName = routes.get(0).getUri().getAuthority().toUpperCase();
+            String applicationName = routes.get(0).getUri().getAuthority().toUpperCase();       //SERVICE-CLIENT
             Constant._platform_contextpath = getApplicationContextPath(applicationName);
         }
     }

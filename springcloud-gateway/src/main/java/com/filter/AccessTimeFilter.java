@@ -12,7 +12,6 @@ import org.springframework.http.HttpCookie;
 import org.springframework.http.ResponseCookie;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.http.server.reactive.ServerHttpResponse;
-import org.springframework.stereotype.Component;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
@@ -23,7 +22,7 @@ import java.util.Date;
 /**
  * AccessTimeFilter --->最后执行的filter刷新cookie最后访问时间
  */
-@Component
+//@Component
 public class AccessTimeFilter implements GlobalFilter, Ordered {
 
     private static final Logger logger = LoggerFactory.getLogger(AccessTimeFilter.class);
