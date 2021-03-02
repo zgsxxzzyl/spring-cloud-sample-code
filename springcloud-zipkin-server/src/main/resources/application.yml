@@ -1,0 +1,15 @@
+server:
+  port: 9411
+  compression:
+    enabled: true
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  application:
+    name: zipkin
+management:
+  metrics:
+    web:
+      server:
+        #避免访问zipkin页面报java.lang.IllegalArgumentException
+        auto-time-requests: false

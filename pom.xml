@@ -29,7 +29,9 @@
         <module>springcloud-gateway</module>
         <module>springcloud-hystrix</module>
         <module>springcloud-ribbon</module>
+        <module>springcloud-sidecar</module>
         <module>springcloud-zuul</module>
+        <module>springcloud-zipkin-server</module>
     </modules>
     <build>
         <plugins>
