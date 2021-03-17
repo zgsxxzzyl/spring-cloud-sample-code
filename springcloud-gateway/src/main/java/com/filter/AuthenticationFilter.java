@@ -68,7 +68,7 @@ public class AuthenticationFilter implements GlobalFilter, Ordered {
                 //向下游服务传递jwt
                 //这里将jwt放到请求头中而不是直接让下游服务从cookie中取的原因是
                 // 1:直接有从请求头中解析jwt的实现；2:常用做法。
-                ServerHttpRequest change_request = request.mutate().header(HttpHeaders.AUTHORIZATION, token).build();
+                ServerHttpRequest change_request = request.mutate().header(HttpHeaders.AUTHORIZATION, new String[]{token}).build();
                 ServerWebExchange change_exchange = exchange.mutate().request(change_request).build();
                 return chain.filter(change_exchange);//直接放行
             } catch (ExpiredJwtException e) {

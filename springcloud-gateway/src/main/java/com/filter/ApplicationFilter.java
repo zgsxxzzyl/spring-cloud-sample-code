@@ -9,7 +9,6 @@ import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.cloud.gateway.route.RouteDefinition;
 import org.springframework.core.Ordered;
-import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.server.ServerWebExchange;
@@ -22,7 +21,7 @@ import java.util.Map;
 /**
  * ApplicationFilter
  */
-@Component
+//@Component
 public class ApplicationFilter implements GlobalFilter, Ordered {
 
     @Autowired
