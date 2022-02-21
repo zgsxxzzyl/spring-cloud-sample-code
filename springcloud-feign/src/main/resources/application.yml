@@ -12,3 +12,5 @@ server:
 spring:
   application:
     name: service-feign
+  main:
+    banner-mode=off:
