@@ -1,4 +1,4 @@
-package com;
+package com.feign;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 @FeignClient(value = "SERVICE-CLIENT")
-public interface ProductInfoApi {
+public interface ProductInfoFeign {
 
     @PostMapping(value = "/productInfo/findByPdCodes")
     Map<String, String> findByPdCodes(@RequestBody List<String> pdCodes
