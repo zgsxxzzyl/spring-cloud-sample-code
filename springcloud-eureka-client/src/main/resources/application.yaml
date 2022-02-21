@@ -1,8 +1,8 @@
 server:
-  servlet:
-    context-path: /client
+#  servlet:
+  #    context-path: /client
   port: 8808
-
+  max-http-header-size: 10485760
 spring:
   application:
     name: service-client
@@ -14,7 +14,7 @@ eureka:
   instance:
     prefer-ip-address: true
     instance-id: ${spring.cloud.client.ip-address}:${server.port}
-
+    lease-renewal-interval-in-seconds: 1
 logging:
   level:
     org.springframework.cloud.gateway: info

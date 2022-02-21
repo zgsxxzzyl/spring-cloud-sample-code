@@ -1,9 +1,14 @@
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:8080/eureka/      #提供服务的地址
+      defaultZone: http://localhost:8761/eureka/      #提供服务的地址
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    lease-renewal-interval-in-seconds: 1
 server:
   port: 7777
+  max-http-header-size: 10485760
 spring:
   application:
     name: service-feign
