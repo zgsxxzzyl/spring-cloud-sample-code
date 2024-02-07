@@ -7,7 +7,7 @@ eureka:
     instance-id: ${spring.cloud.client.ip-address}:${server.port}
     lease-renewal-interval-in-seconds: 1
 server:
-  port: 7777
+  port: 8082
   max-http-header-size: 10485760
 spring:
   application:

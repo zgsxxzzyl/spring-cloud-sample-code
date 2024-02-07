@@ -1,4 +1,4 @@
-package com;
+package com.feign;
 
 import com.vo.Store;
 import org.springframework.cloud.openfeign.FeignClient;

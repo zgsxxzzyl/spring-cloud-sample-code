@@ -1,7 +1,7 @@
 server:
 #  servlet:
   #    context-path: /client
-  port: 8808
+  port: 8081
   max-http-header-size: 10485760
 spring:
   application:

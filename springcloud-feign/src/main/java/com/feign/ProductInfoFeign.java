@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 import java.util.Map;
 
-@FeignClient(value = "SERVICE-CLIENT")
+@FeignClient("SERVICE-CLIENT")
 public interface ProductInfoFeign {
 
     @PostMapping(value = "/productInfo/findByPdCodes")
